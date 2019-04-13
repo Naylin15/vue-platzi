@@ -6,7 +6,11 @@
 </head>
 <body>
     <div id="app">
-        Hola {{ nombre }}
+        <template v-if=mostrar>
+            <h1>Este es mi título</h1>
+            <h2>Este es mi subtítulo</h2>
+            <a v-bind:href="url" target="_blank">Ir a {{ pagina }}</a>
+        </template>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -14,7 +18,10 @@
         let app = new Vue ({
             el: '#app',
             data: {
-                nombre: 'Mundo!'
+                nombre: 'Mundo!',
+                url: 'https://workana.com',
+                pagina: 'Workana',
+                mostrar: true
             }
         })
     </script>
