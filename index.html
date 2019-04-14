@@ -6,9 +6,18 @@
 </head>
 <body>
     <div id="app">
-        <button @click="sumar">Suma</button>
-        <button @click="restar">Resta</button>
-        El contador está en {{ contador }}
+        <input type="text" name="name" placeholder="Enter your name" v-model="name">
+        <p>Your name is: {{ name | capital }}</p>
+        <form v-on:submit.prevent="submit" action="" method="get">
+            <h2>Select your favorite courses</h2>
+            <input type="checkbox" v-model="cursos" id="vue" value="vue.js"/>
+            <label for="vue">Curso de Vue.js</label>
+            <input type="checkbox" v-model="cursos" id="react" value="react.js"/>
+            <label for="react">Curso de React.js</label>
+            <input type="checkbox" v-model="cursos" id="go" value="golanguage"/>
+            <label for="go">Curso de Go</label>
+            <button type="submit">Send</button>
+        </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -16,14 +25,15 @@
         let app = new Vue ({
             el: '#app',
             data: {
-                contador: 0,
+                name: "",
+                cursos: []
+            },
+            filters: {
+                capital: str => str.charAt(0).toUpperCase() + str.substring(1)
             },
             methods: {
-                sumar () {
-                    this.contador++
-                },
-                restar () {
-                     this.contador--
+                submit () {
+                    console.log(this.cursos)
                 }
             }
         })
