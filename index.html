@@ -6,9 +6,9 @@
 </head>
 <body>
     <div id="app">
-        <h1>{{ titulo | uppercase }}</h1>
-        <h2>{{ subtitulo | lowercase }}</h2>
-        <h3>{{ paragraph | capitalize }}</h3>   
+        <button @click="sumar">Suma</button>
+        <button @click="restar">Resta</button>
+        El contador está en {{ contador }}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -16,16 +16,16 @@
         let app = new Vue ({
             el: '#app',
             data: {
-                titulo: "Learning Vue.js",
-                subtitulo: "Using filters",
-                paragraph: "start with capital letter"
+                contador: 0,
             },
-            filters: {
-                uppercase: str => str.toUpperCase(),
-                lowercase: str => str.toLowerCase(),
-                capitalize: str => str.charAt(0).toUpperCase() + str.substring(1)
+            methods: {
+                sumar () {
+                    this.contador++
+                },
+                restar () {
+                     this.contador--
+                }
             }
-
         })
     </script>
 
