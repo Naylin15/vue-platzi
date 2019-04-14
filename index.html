@@ -6,12 +6,9 @@
 </head>
 <body>
     <div id="app">
-        <div v-show=mostrar>
-            <h1>Este es mi título</h1>
-            <h2>Este es mi subtítulo</h2>
-            <a v-bind:href="url" target="_blank">Ir a {{ pagina }}</a>
-        </div>
-        <div v-show=!mostrar>Esto tiene css display none</div>
+        <h1>{{ titulo | uppercase }}</h1>
+        <h2>{{ subtitulo | lowercase }}</h2>
+        <h3>{{ paragraph | capitalize }}</h3>   
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -19,11 +16,16 @@
         let app = new Vue ({
             el: '#app',
             data: {
-                nombre: 'Mundo!',
-                url: 'https://workana.com',
-                pagina: 'Workana',
-                mostrar: true
+                titulo: "Learning Vue.js",
+                subtitulo: "Using filters",
+                paragraph: "start with capital letter"
+            },
+            filters: {
+                uppercase: str => str.toUpperCase(),
+                lowercase: str => str.toLowerCase(),
+                capitalize: str => str.charAt(0).toUpperCase() + str.substring(1)
             }
+
         })
     </script>
 
