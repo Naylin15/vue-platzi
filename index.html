@@ -9,16 +9,29 @@
         <form @submit.prevent="submit" action="" method="get">
         <h2>Select your favorite courses</h2>
             <template v-for="curso in cursos">
-                <input v-model="cursosS" type="checkbox" 
-                v-bind:id="curso.value" v-bind:value="curso.value"/>
-                <label v-bind:for="curso.value">{{ curso.name }}</label>
+                <curso :curso="curso" @checked="selectCourse"></curso>
             </template>
             <button type="submit">Send</button>
         </form>
     </div>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="text/javascript">
+        Vue.component('curso', {
+            props: ['curso'],
+            methods: {
+                onchange: function (ev) {
+                    this.$emit('checked', this.curso.value, ev.target.checked)
+                }
+            },
+            template: `
+                <div>
+                    <input type="checkbox" :id="curso.value" 
+                    :value="curso.value" @change="onchange"/>
+                    <label v-bind:for="curso.value">{{ curso.name }}</label>
+                </div>
+            `
+        })
         let app = new Vue ({
             el: '#app',
             data: {
@@ -33,6 +46,14 @@
                 submit: function () {
                     console.log("Prueba")
                     console.log(this.cursosS)
+                },
+                selectCourse: function (curso, checked) {
+                    if (checked) {
+                        this.cursosS.push(curso)
+                    } else {
+                        let index = this.cursosS.indexOf(curso)
+                        this.cursosS.splice(index, 1)
+                    }
                 }
             }
         })
