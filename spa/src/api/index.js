@@ -7,4 +7,4 @@ export default function getArtists () {
     return fetch(URL)
         .then(res => res.json())
         .then(json => json.topartists.artist)
-}
+    }

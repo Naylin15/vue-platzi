@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-
       <ul>
-        <li v-for="artist in artists">{{ artist.name }}</li>
+        <artist v-for="artist in artists" v-bind:artist="artist"></artist>
       </ul>
   </div>
 </template>
 
 <script>
+import Artist from './components/Artist.vue'
 import getArtists from './api'
 export default {
   name: 'app',
@@ -16,6 +16,9 @@ export default {
     return {
       artists: [ ]
     }
+  },
+  components: {
+    Artist
   },
   mounted: function () {
     const self = this
