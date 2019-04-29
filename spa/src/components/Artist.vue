@@ -1,5 +1,5 @@
 <template>
-    <li>
+    <li class="artist">
         <h2><a :href="artist.url">{{ artist.name }}</a></h2>
         <img :src="artist.image[2]['#text']" />
     </li>
@@ -15,8 +15,8 @@ export default {
 
 </script>
 
-<style lang="stylus">
-li
+<style lang="stylus" scoped>
+li.artist
     display block
     margin 10px 0
 
